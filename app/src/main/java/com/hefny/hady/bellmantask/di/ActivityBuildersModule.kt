@@ -1,6 +1,6 @@
 package com.hefny.hady.bellmantask.di
 
-import com.hefny.hady.bellmantask.MainActivity
+import com.hefny.hady.bellmantask.ui.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
