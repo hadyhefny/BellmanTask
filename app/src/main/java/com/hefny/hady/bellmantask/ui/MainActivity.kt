@@ -5,7 +5,6 @@ import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.hefny.hady.bellmantask.R
-import com.hefny.hady.bellmantask.util.ApiSuccessResponse
 import com.hefny.hady.bellmantask.viewmodels.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
@@ -24,11 +23,15 @@ class MainActivity : DaggerAppCompatActivity() {
     }
 
     private fun subscribeObservers() {
-        viewModel.homeResponseLiveData.observe(this, Observer { response ->
-            when (response) {
-                is ApiSuccessResponse -> {
-                    Log.d(TAG, "subscribeObservers: ${response.body.data}")
+        viewModel.homeResponseLiveData.observe(this, Observer { dataState ->
+            dataState?.let {
+                dataState.data?.getContentIfNotHandled()?.let {
+                    Log.d(TAG, "subscribeObservers: data: ${it.data}")
                 }
+                dataState.error?.getContentIfNotHandled()?.let { message ->
+                    Log.d(TAG, "subscribeObservers: error: $message")
+                }
+                Log.d(TAG, "subscribeObservers: loading: ${dataState.loading}")
             }
         })
     }
