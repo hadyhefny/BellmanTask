@@ -1,6 +1,8 @@
 package com.hefny.hady.bellmantask.di
 
 import android.app.Application
+import com.hefny.hady.bellmantask.adapters.AttractionsListAdapter
+import com.hefny.hady.bellmantask.adapters.HotSpotsListAdapter
 import com.hefny.hady.bellmantask.api.HomeApi
 import com.hefny.hady.bellmantask.repository.Repository
 import com.hefny.hady.bellmantask.util.ConnectivityUtil
@@ -41,5 +43,15 @@ class AppModule {
     @Provides
     fun provideRepository(homeApi: HomeApi, connectivityUtil: ConnectivityUtil): Repository {
         return Repository(homeApi, connectivityUtil)
+    }
+
+    @Provides
+    fun provideAttractionsAdapter(): AttractionsListAdapter {
+        return AttractionsListAdapter()
+    }
+
+    @Provides
+    fun provideHotSpotsAdapter(): HotSpotsListAdapter {
+        return HotSpotsListAdapter()
     }
 }

@@ -49,4 +49,15 @@ dependencies {
     def retrofit_version = "2.7.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    // material design
+    def material_version = "1.2.0-alpha05"
+    implementation "com.google.android.material:material:$material_version"
+    // glide
+    def glide_version = "4.11.0"
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+    // custom toolbar
+    // shape of view library
+    def shape_of_view_version = "1.4.7"
+    implementation "com.github.florent37:shapeofview:$shape_of_view_version"
 }
