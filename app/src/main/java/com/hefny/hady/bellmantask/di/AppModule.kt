@@ -1,6 +1,9 @@
 package com.hefny.hady.bellmantask.di
 
+import android.app.Application
 import com.hefny.hady.bellmantask.api.HomeApi
+import com.hefny.hady.bellmantask.repository.Repository
+import com.hefny.hady.bellmantask.util.ConnectivityUtil
 import com.hefny.hady.bellmantask.util.Constants
 import com.hefny.hady.bellmantask.util.LiveDataCallAdapterFactory
 import dagger.Module
@@ -28,4 +31,15 @@ class AppModule {
         return retrofit.create(HomeApi::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun provideConnectivityUtil(application: Application): ConnectivityUtil {
+        return ConnectivityUtil(application)
+    }
+
+    @Singleton
+    @Provides
+    fun provideRepository(homeApi: HomeApi, connectivityUtil: ConnectivityUtil): Repository {
+        return Repository(homeApi, connectivityUtil)
+    }
 }
