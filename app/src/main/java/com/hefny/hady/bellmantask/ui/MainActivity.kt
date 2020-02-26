@@ -13,6 +13,7 @@ import com.hefny.hady.bellmantask.adapters.HotSpotsListAdapter
 import com.hefny.hady.bellmantask.viewmodels.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.main_content.*
 import javax.inject.Inject
 
 class MainActivity : DaggerAppCompatActivity() {
