@@ -3,7 +3,7 @@ package com.hefny.hady.bellmantask.util
 data class DataState<T>(
     var error: Event<String>? = null,
     var loading: Boolean = false,
-    var data: Event<T>? = null
+    var data: T? = null
 ) {
     companion object {
         fun <T> error(message: String): DataState<T> {
@@ -17,7 +17,7 @@ data class DataState<T>(
         }
 
         fun <T> data(data: T? = null): DataState<T> {
-            return DataState(data = Event.dataEvent(data),loading = false)
+            return DataState(data =data,loading = false)
         }
     }
 }

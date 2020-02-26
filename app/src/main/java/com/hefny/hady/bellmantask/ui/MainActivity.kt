@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.main_content.*
 import javax.inject.Inject
 
-class MainActivity : DaggerAppCompatActivity() {
+
+class MainActivity : DaggerAppCompatActivity(), View.OnClickListener {
     val TAG = "AppDebug"
     @Inject
     lateinit var providerFactory: ViewModelProviderFactory
@@ -27,6 +28,8 @@ class MainActivity : DaggerAppCompatActivity() {
     @Inject
     lateinit var hotSpotsListAdapter: HotSpotsListAdapter
 
+    private var isFABOpen = false
+
     lateinit var viewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,15 +38,20 @@ class MainActivity : DaggerAppCompatActivity() {
         initAttractionsRecyclerAdapter()
         initHotSpotsRecyclerAdapter()
         subscribeObservers()
+        fab.setOnClickListener(this)
+        myView.setOnClickListener(this)
+        bar.setOnClickListener(this)
     }
 
     private fun subscribeObservers() {
+        hideViews()
         viewModel.homeResponseLiveData.observe(this, Observer { dataState ->
             dataState?.let {
                 // loading state
                 showProgressBar(dataState.loading)
                 // success state
-                dataState.data?.getContentIfNotHandled()?.let { response ->
+                dataState.data?.let { response ->
+                    showViews()
                     // attractions
                     response.data?.attractions?.let { list ->
                         list.let {
@@ -66,6 +74,30 @@ class MainActivity : DaggerAppCompatActivity() {
                 }
             }
         })
+    }
+
+    private fun hideViews(){
+        hot_spot_icon_image_view.visibility = View.GONE
+        hot_spot_name.visibility = View.GONE
+        view_all_text_view.visibility = View.GONE
+        view_all_icon_image_view.visibility = View.GONE
+
+        attractions_icon_image_view.visibility = View.GONE
+        attractions_name.visibility = View.GONE
+        attractions_view_all_text_view.visibility = View.GONE
+        attractions_view_all_icon_image_view.visibility = View.GONE
+    }
+
+    private fun showViews(){
+        hot_spot_icon_image_view.visibility = View.VISIBLE
+        hot_spot_name.visibility = View.VISIBLE
+        view_all_text_view.visibility = View.VISIBLE
+        view_all_icon_image_view.visibility = View.VISIBLE
+
+        attractions_icon_image_view.visibility = View.VISIBLE
+        attractions_name.visibility = View.VISIBLE
+        attractions_view_all_text_view.visibility = View.VISIBLE
+        attractions_view_all_icon_image_view.visibility = View.VISIBLE
     }
 
     private fun initHotSpotsRecyclerAdapter() {
@@ -95,5 +127,47 @@ class MainActivity : DaggerAppCompatActivity() {
         } else {
             progress_bar.visibility = View.GONE
         }
+    }
+
+    override fun onClick(v: View?) {
+        if (v == fab) {
+            myView.visibility = View.VISIBLE
+            if (!isFABOpen) {
+                showFABMenu()
+            } else {
+                closeFABMenu()
+            }
+        } else if (v == myView || v == bar) {
+            myView.visibility = View.GONE
+            closeFABMenu()
+        }
+    }
+
+    private fun showFABMenu() {
+        isFABOpen = true
+        hot_spots_fab.animate().translationX(-300f)
+        events_fab.animate().translationY(-300f)
+        events_fab.animate().translationX(-130f)
+        attractions_fab.animate().translationY(-300f)
+        attractions_fab.animate().translationX(130f)
+        loaction_pin_fab.animate().translationX(300f)
+        hot_spots_fab.animate().alpha(1f)
+        events_fab.animate().alpha(1f)
+        attractions_fab.animate().alpha(1f)
+        loaction_pin_fab.animate().alpha(1f)
+    }
+
+    private fun closeFABMenu() {
+        isFABOpen = false
+        hot_spots_fab.animate().translationX(0f)
+        events_fab.animate().translationY(0f)
+        events_fab.animate().translationX(0f)
+        attractions_fab.animate().translationY(0f)
+        attractions_fab.animate().translationX(0f)
+        loaction_pin_fab.animate().translationX(0f)
+        hot_spots_fab.animate().alpha(0f)
+        events_fab.animate().alpha(0f)
+        attractions_fab.animate().alpha(0f)
+        loaction_pin_fab.animate().alpha(0f)
     }
 }

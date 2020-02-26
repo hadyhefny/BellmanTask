@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
@@ -76,13 +76,71 @@
     </com.google.android.material.bottomappbar.BottomAppBar>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/hot_spots_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="34dp"
+        android:alpha="0"
+        android:backgroundTint="#FFF"
+        android:src="@drawable/hotspot_icon"
+        app:borderWidth="0dp"
+        app:fabCustomSize="40dp"
+        app:maxImageSize="26dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/events_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="34dp"
+        android:alpha="0"
+        android:backgroundTint="#FFF"
+        android:src="@drawable/events_icon"
+        app:borderWidth="0dp"
+        app:fabCustomSize="40dp"
+        app:maxImageSize="26dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/attractions_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="34dp"
+        android:alpha="0"
+        android:backgroundTint="#FFF"
+        android:src="@drawable/attarctions_icon"
+        app:borderWidth="0dp"
+        app:fabCustomSize="40dp"
+        app:maxImageSize="26dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/loaction_pin_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="34dp"
+        android:alpha="0"
+        android:backgroundTint="#FFF"
+        android:src="@drawable/small_grey_location_pin"
+        app:borderWidth="0dp"
+        app:fabCustomSize="40dp"
+        app:maxImageSize="26dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:borderWidth="0dp"
         android:src="@drawable/bellman_bottom_icon"
-        app:maxImageSize="50dp"
+        app:borderWidth="0dp"
         app:fabCustomSize="50dp"
-        app:layout_anchor="@id/bar" />
+        app:layout_anchor="@id/bar"
+        app:maxImageSize="50dp" />
 
+    <View
+        android:id="@+id/myView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="85dp"
+        android:visibility="gone" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
