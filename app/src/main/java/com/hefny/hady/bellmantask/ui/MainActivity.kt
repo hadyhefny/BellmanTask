@@ -40,7 +40,6 @@ class MainActivity : DaggerAppCompatActivity(), View.OnClickListener {
         subscribeObservers()
         fab.setOnClickListener(this)
         myView.setOnClickListener(this)
-        bar.setOnClickListener(this)
     }
 
     private fun subscribeObservers() {
@@ -131,13 +130,14 @@ class MainActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v == fab) {
-            myView.visibility = View.VISIBLE
             if (!isFABOpen) {
+                myView.visibility = View.VISIBLE
                 showFABMenu()
             } else {
+                myView.visibility = View.GONE
                 closeFABMenu()
             }
-        } else if (v == myView || v == bar) {
+        } else if (v == myView) {
             myView.visibility = View.GONE
             closeFABMenu()
         }

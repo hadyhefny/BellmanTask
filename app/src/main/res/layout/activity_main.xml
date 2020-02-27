@@ -75,6 +75,13 @@
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
+    <View
+        android:id="@+id/myView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:background="#79FFFFFF"/>
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/hot_spots_fab"
         android:layout_width="wrap_content"
@@ -137,10 +144,4 @@
         app:layout_anchor="@id/bar"
         app:maxImageSize="50dp" />
 
-    <View
-        android:id="@+id/myView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="85dp"
-        android:visibility="gone" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
