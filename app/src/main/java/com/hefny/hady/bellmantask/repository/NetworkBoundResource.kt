@@ -5,14 +5,18 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.hefny.hady.bellmantask.util.*
 
+/**
+ * A generic class that is responsible for handling network calls
+ *  Based on Android Architecture Guide
+ **/
 abstract class NetworkBoundResource<ResponseObject>(
     isNetworkAvailable: Boolean
 ) {
     private val TAG = "AppDebug"
-    protected val result = MediatorLiveData<DataState<ResponseObject>>()
+    protected val result = MediatorLiveData<Resource<ResponseObject>>()
 
     init {
-        setValue(DataState.loading(true))
+        setValue(Resource.loading(true))
         if (isNetworkAvailable) {
             val apiResponse = createCall()
             result.addSource(apiResponse) { response ->
@@ -40,8 +44,8 @@ abstract class NetworkBoundResource<ResponseObject>(
         }
     }
 
-    fun setValue(dataState: DataState<ResponseObject>) {
-        result.value = dataState
+    fun setValue(resource: Resource<ResponseObject>) {
+        result.value = resource
     }
 
     private fun onErrorReturn(errorMessage: String?) {
@@ -52,10 +56,10 @@ abstract class NetworkBoundResource<ResponseObject>(
         } else if (ErrorHandling.isNetworkError(msg)) {
             msg = ErrorHandling.ERROR_CHECK_NETWORK_CONNECTION
         }
-        setValue(DataState.error(msg))
+        setValue(Resource.error(msg))
     }
 
-    fun asLiveData() = result as LiveData<DataState<ResponseObject>>
+    fun asLiveData() = result as LiveData<Resource<ResponseObject>>
     abstract fun handleApiSuccessResponse(response: ApiSuccessResponse<ResponseObject>)
     abstract fun createCall(): LiveData<GenericApiResponse<ResponseObject>>
 }

@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.hefny.hady.bellmantask.repository.Repository
 import com.hefny.hady.bellmantask.models.HomeResponse
-import com.hefny.hady.bellmantask.util.DataState
+import com.hefny.hady.bellmantask.util.Resource
 import javax.inject.Inject
 
 class MainViewModel
@@ -12,5 +12,5 @@ class MainViewModel
 constructor(
     private val repository: Repository
 ) : ViewModel() {
-    val homeResponseLiveData: LiveData<DataState<HomeResponse>> = repository.getHomeApi()
+    val homeResponseLiveData: LiveData<Resource<HomeResponse>> = repository.getHomeApi()
 }

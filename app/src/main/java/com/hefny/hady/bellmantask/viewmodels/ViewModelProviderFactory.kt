@@ -7,9 +7,9 @@ import javax.inject.Provider
 
 /**
  * Generic factory class to create ViewModels using Dagger 2 injections, working around the fact
- * that we cannot inject view models directly. Based on Android Architecture Components example:
- * https://github.com/googlesamples/android-architecture-components/blob/b1a194c1ae267258cd002e2e1c102df7180be473/GithubBrowserSample/app/src/main/java/com/android/example/github/viewmodel/GithubViewModelFactory.java
- */
+ * that we cannot inject view models directly. Based on Android Architecture Components example
+ * *********** ONE FACTORY FOR ALL VIEWMODELS ***************
+ **/
 class ViewModelProviderFactory
 @Inject
 constructor(
