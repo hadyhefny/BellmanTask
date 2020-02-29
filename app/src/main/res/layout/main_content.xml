@@ -105,164 +105,171 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nested_scroll_view"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="?actionBarSize"
-        android:fillViewport="true"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nested_scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_marginBottom="?actionBarSize"
+            android:fillViewport="true"
+            app:layout_behavior="com.hefny.hady.bellmantask.util.OverScrollBehaviour">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/hot_spots_constraints_layout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@id/attractions_constraint_layout"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/hot_spot_icon_image_view"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/hot_spots_constraints_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toTopOf="@id/attractions_constraint_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <ImageView
+                        android:id="@+id/hot_spot_icon_image_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/hotspot_icon"
+                        app:layout_constraintBottom_toTopOf="@+id/hot_spots_recycler_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/hot_spot_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Hotspots"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/hot_spot_icon_image_view"
+                        app:layout_constraintStart_toEndOf="@+id/hot_spot_icon_image_view"
+                        app:layout_constraintTop_toTopOf="@+id/hot_spot_icon_image_view" />
+
+                    <TextView
+                        android:id="@+id/view_all_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="View all"
+                        android:textAlignment="center"
+                        android:textColor="@color/purple"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/hot_spot_name"
+                        app:layout_constraintEnd_toStartOf="@+id/view_all_icon_image_view"
+                        app:layout_constraintTop_toTopOf="@+id/hot_spot_name" />
+
+                    <ImageView
+                        android:id="@+id/view_all_icon_image_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/view_all_icon"
+                        app:layout_constraintBottom_toBottomOf="@+id/view_all_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/view_all_text_view" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/hot_spots_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/hot_spot_icon_image_view" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/attractions_constraint_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="40dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/hot_spots_constraints_layout">
+
+                    <ImageView
+                        android:id="@+id/attractions_icon_image_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:src="@drawable/attarctions_icon"
+                        app:layout_constraintBottom_toTopOf="@+id/attractions_recycler_view"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/attractions_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="Attractions"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/attractions_icon_image_view"
+                        app:layout_constraintStart_toEndOf="@+id/attractions_icon_image_view"
+                        app:layout_constraintTop_toTopOf="@+id/attractions_icon_image_view" />
+
+                    <TextView
+                        android:id="@+id/attractions_view_all_text_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="View all"
+                        android:textAlignment="center"
+                        android:textColor="@color/purple"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/attractions_name"
+                        app:layout_constraintEnd_toStartOf="@+id/attractions_view_all_icon_image_view"
+                        app:layout_constraintTop_toTopOf="@+id/attractions_name" />
+
+                    <ImageView
+                        android:id="@+id/attractions_view_all_icon_image_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:src="@drawable/view_all_icon"
+                        app:layout_constraintBottom_toBottomOf="@+id/attractions_view_all_text_view"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/attractions_view_all_text_view" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/attractions_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/attractions_icon_image_view" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/hotspot_icon"
-                    app:layout_constraintBottom_toTopOf="@+id/hot_spots_recycler_view"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/hot_spot_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Hotspots"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/hot_spot_icon_image_view"
-                    app:layout_constraintStart_toEndOf="@+id/hot_spot_icon_image_view"
-                    app:layout_constraintTop_toTopOf="@+id/hot_spot_icon_image_view" />
-
-                <TextView
-                    android:id="@+id/view_all_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="View all"
-                    android:textAlignment="center"
-                    android:textColor="@color/purple"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/hot_spot_name"
-                    app:layout_constraintEnd_toStartOf="@+id/view_all_icon_image_view"
-                    app:layout_constraintTop_toTopOf="@+id/hot_spot_name" />
-
-                <ImageView
-                    android:id="@+id/view_all_icon_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/view_all_icon"
-                    app:layout_constraintBottom_toBottomOf="@+id/view_all_text_view"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/view_all_text_view" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/hot_spots_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/hot_spot_icon_image_view" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/attractions_constraint_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/hot_spots_constraints_layout">
+        </androidx.core.widget.NestedScrollView>
 
-                <ImageView
-                    android:id="@+id/attractions_icon_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/attarctions_icon"
-                    app:layout_constraintBottom_toTopOf="@+id/attractions_recycler_view"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/attractions_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="Attractions"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/attractions_icon_image_view"
-                    app:layout_constraintStart_toEndOf="@+id/attractions_icon_image_view"
-                    app:layout_constraintTop_toTopOf="@+id/attractions_icon_image_view" />
-
-                <TextView
-                    android:id="@+id/attractions_view_all_text_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="View all"
-                    android:textAlignment="center"
-                    android:textColor="@color/purple"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/attractions_name"
-                    app:layout_constraintEnd_toStartOf="@+id/attractions_view_all_icon_image_view"
-                    app:layout_constraintTop_toTopOf="@+id/attractions_name" />
-
-                <ImageView
-                    android:id="@+id/attractions_view_all_icon_image_view"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:src="@drawable/view_all_icon"
-                    app:layout_constraintBottom_toBottomOf="@+id/attractions_view_all_text_view"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/attractions_view_all_text_view" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/attractions_recycler_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:orientation="horizontal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/attractions_icon_image_view" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-            <ProgressBar
-                android:id="@+id/progress_bar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </merge>

@@ -101,6 +101,7 @@ class MainActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
     private fun initHotSpotsRecyclerAdapter() {
         hot_spots_recycler_view.apply {
+            isNestedScrollingEnabled = false
             layoutManager =
                 LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = hotSpotsListAdapter
@@ -109,6 +110,7 @@ class MainActivity : DaggerAppCompatActivity(), View.OnClickListener {
 
     private fun initAttractionsRecyclerAdapter() {
         attractions_recycler_view.apply {
+            isNestedScrollingEnabled = false
             layoutManager =
                 LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
             adapter = attractionsListAdapter
